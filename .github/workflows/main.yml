@@ -1,0 +1,21 @@
+name: Deploy to Ubuntu Server with Password
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Install sshpass
+      run: sudo apt-get install sshpass
+
+    - name: Copy files to server using password
+      run: |
+        sshpass -p "${{ secrets.SERVER_PASSWORD }}" rsync -avz -e "ssh -o StrictHostKeyChecking=no" ./ minsu@180.80.36.198:/home/minsu/portfolio

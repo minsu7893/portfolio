@@ -18,4 +18,4 @@ jobs:
 
     - name: Copy files to server using password
       run: |
-        sshpass -p "${{ secrets.SERVER_PASSWORD }}" rsync -avz -e "ssh -o StrictHostKeyChecking=no" ./ minsu@180.80.36.198:/home/minsu/portfolio
+        sshpass -p "${{ secrets.SERVER_PASSWORD }}" rsync -avz -e "ssh -o StrictHostKeyChecking=no" ./ minsu@180.80.36.198:/home/minsu/portfoliogit

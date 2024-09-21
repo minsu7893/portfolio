@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="keywords" content="minsu,blog,portfolio" />
+  <meta name="description" content="Build your own portfolio <br> with minsu." />
+  <meta name="author" content="minsu" />
+  <meta name="theme-color" content="#4568f0" /> <!-- Edit this -->
+  <meta name="msapplication-TileColor" content="#ffffff" /> <!-- Edit this -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="프로젝트 |  minsu" />
+  <meta property="og:description" content='프로젝트 설명' />
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png" /> <!-- Edit this -->
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon-32x32.png" /> <!-- Edit this -->
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon-16x16.png" /> <!-- Edit this -->
+  <link rel="manifest" href="/assets/images/site.webmanifest" />
+  <link rel="mask-icon" href="/assets/images/safari-pinned-tab.svg" color="#4568f0" /> <!-- Edit this -->
+  <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-4-grid@3.3.0/css/grid.min.css" />
+  <link rel="stylesheet" href="/assets/css/minsu.css" />
+  <link rel="stylesheet" href="/assets/css/monokai.css" />
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA_TOKEN"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag("js", new Date());
+    gtag("config", "UA_TOKEN");
+  </script>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+  <script src="https://kit.fontawesome.com/e9e8beb1d5.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+  <script src="/assets/js/minsu.js"></script>
+  <title>프로젝트 | minsu</title>
+</head>
+
+<body>
+  <section class="minsu main">
+    <div class="minsu jumbotron">
+      <div class="minsu container">
+        <h1>ISA 개발업무</h1>
+      </div>
+    </div>
+    <div class="minsu container">
+      <div class="minsu content">
+        <h2 style="color: rgb(75, 0, 130);">금융투자소득세 신규개발 (2022.10 ~ 2022.12) – 유예</h2>
+        <ul>
+          <li><b>개요</b>: 금융투자소득세 도입에 따라 ISA 상품의 거래내역 및 손익 통산을 관리하는 모듈 개발과 관련된 화면 및 전문을 변경. 이후 법령 시행 유예로 인해 개발 중단되었으나,
+            수정된 내용은 문서화하여 향후 활용할 수 있도록 게시.</li>
+          <li><b>역할</b>: 상품정보 테이블에 상품그룹코드를 추가하고, 상품그룹별 손익 통산 모듈을 개발. 하드코딩 되어있던 세율을 세율정보 테이블로 분리하여 세율 관리를 효율화. 해지지급내역 조회
+            화면 및 전문을 변경하여 처리 프로세스를 개선. 지급명세서 항목 변경에 따라 상품그룹별 비과세 금액 및 분리과세 필드를 수정하고 관리 기능을 추가.</li>
+          <li><b>기술 스택</b>: JAVA(Spring 기반 AnyFrame), RDBMS(Oracle)</li>
+          <li><b>성과</b>: 손익 통산 모듈을 설계하고 구현하여 정확한 금융투자소득세 관리를 지원. 세율 관리의 유연성을 높여 법적 변경에 신속하게 대응 가능. 해지지급내역 조회 화면과 전문을 개선해
+            업무 효율성을 증대. 상품그룹별 비과세 금액 및 분리과세 필드 변경으로 세무 처리의 정확성 확보.</li>
+        </ul>
+
+        <h2 style="color: rgb(75, 0, 130);">계좌현황 조회 비대면 화면 개선 (2022.12 ~ 2023.02)</h2>
+        <ul>
+          <li><b>개요</b>: ISA 상품의 입금 시마다 상품이 매수되는 방식으로, 기존에는 동일 상품의 금액이 합산되어 신규일자, 만기일, 상품 금리(수익률) 확인이 불가능하여 고객 불편이 있었음.
+          </li>
+          <li><b>역할</b>: 비대면 채널과 협의하여 신규일자, 만기일, 상품 금리를 표시하기 위해 상품 조회 쿼리 수정 및 수익률 계산을 진행하고, 전문 및 프로그램 수정을 수행함.</li>
+          <li><b>기술 스택</b>: JAVA(Spring 기반 AnyFrame), RDBMS(Oracle), 통합단말, MCA 전문</li>
+          <li><b>성과</b>: 고객에게 매수일과 이율 정보를 명확히 제공하여 비대면 서비스의 고객 만족도를 향상시킴.</li>
+        </ul>
+
+        <h2 style="color: rgb(75, 0, 130);">ISA 계좌이전 시스템 신설 (2022.08 ~ 2023.03)</h2>
+        <ul>
+          <li><b>개요</b>: FAX 방식의 계좌이전 처리 문제를 해결하기 위해 예탁결제원과 계좌이전 시스템을 신설. 기존 수기 처리로 인한 누락 및 지연 문제를 개선하고, 고객 이탈 방지를 위한
+            기능을 추가함.</li>
+          <li><b>역할</b>: 총 3개의 전문(이전신청/취소통보, 이전예정/취소통보, 이전접수/거절통보)을 개발하고, 계좌이전 관리 화면 및 업무 테이블을 새로 구현하여 계좌이전 프로세스를 자동화함.
+            타행 신청 건에 대해 관리점 알림과 이탈 징후 등록 기능을 추가하여 고객 이탈을 방지.</li>
+          <li><b>기술 스택</b>: JAVA(Spring 기반 AnyFrame), RDBMS(Oracle), FEP 대외전문</li>
+          <li><b>성과</b>: 계좌이전 프로세스의 자동화로 누락 및 지연 문제를 해결함. 고객 이탈 방지 기능으로 당행의 고객 유지율을 강화함.</li>
+        </ul>
+
+        <h2 style="color: rgb(75, 0, 130);">ISA 펀드보유고객 SMS 발송화면 신설 (2023.01 ~ 2023.03)</h2>
+        <ul>
+          <li><b>개요</b>: ISA 상품 내 펀드 보유 고객에게 법적 통지를 발송할 수 있는 SMS 발송 화면을 개발. 발송일, 발송 내역, 문구 지정과 발송 전 취소 기능을 제공하여 통지의 정확성을
+            향상.</li>
+          <li><b>역할</b>: 발송일, 발송 내역, 문구를 사전에 지정하고 발송 전 취소 기능을 제공하며, 보유상품 고객을 검증하여 정확성을 높임. 발송 이력을 적재하여 추후 감사에 활용.</li>
+          <li><b>기술 스택</b>: JAVA(Spring 기반 AnyFrame), RDBMS(Oracle), EAI 대내전문, jFlow(batch 솔루션)</li>
+          <li><b>성과</b>: 법적 통지의 자동화 및 정확성 향상으로 고객 통지 업무의 효율성을 강화하고 법적 준수성을 높임.</li>
+        </ul>
+
+        <h2 style="color: rgb(75, 0, 130);">타사제공 만기재예치 SQL 성능 개선 (2023.09)</h2>
+        <ul>
+          <li><b>개요</b>: 타사에 제공하는 예금 상품의 만기 재예치 목록 추출 SQL 성능을 튜닝. 기존에는 일별 120분 이상 소요되어 후행 배치에 영향을 미침.</li>
+          <li><b>역할</b>: FULL TABLE SCAN을 해결하기 위해 계약기본 테이블에 인덱스를 추가하고 힌트를 적용하여 거래 시간을 일별 20분으로 단축함.</li>
+          <li><b>기술 스택</b>: jFlow(batch 솔루션), RDBMS(Oracle)</li>
+          <li><b>성과</b>: 배치 성능을 대폭 개선하여 거래 시간을 단축함. 시스템 효율성 증대 및 업무 수행 지장 최소화.</li>
+        </ul>
+
+        <h2 style="color: rgb(75, 0, 130);">타사제공 예금 잔액 조회 화면 신설 (2023.01 ~ 2023.02)</h2>
+        <ul>
+          <li><b>개요</b>: 타사제공 금리 추이와 판매 실적을 시각적으로 제공하는 조회 화면을 개발하여 경영 자료 요청을 줄이고, 업무 효율성을 높임.</li>
+          <li><b>역할</b>: 금리 추이 및 판매 실적을 즉시 조회할 수 있는 화면을 신규 개발하고, 그래프 및 차트로 도식화된 정보를 제공하여 정보 접근성을 개선함.</li>
+          <li><b>기술 스택</b>: JAVA(Spring 기반 AnyFrame), RDBMS(Oracle), 통합단말, EAI 대내전문</li>
+          <li><b>성과</b>: 즉시 조회 가능한 화면으로 업무 효율성을 향상시키고, 불필요한 업무를 줄여 정보 접근 용이성을 증대.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</body>
+
+</html>

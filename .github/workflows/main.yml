@@ -18,6 +18,7 @@ jobs:
         mkdir -p ~/.ssh
         echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
         chmod 600 ~/.ssh/id_rsa
+        ssh-keyscan 180.80.36.198 >> ~/.ssh/known_hosts
 
     - name: Copy files to server using SSH
       run: |

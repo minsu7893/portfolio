@@ -1,4 +1,4 @@
-name: Deploy to Ubuntu Server with Password
+name: Deploy to Ubuntu Server with SSH Key
 
 on:
   push:
@@ -13,9 +13,12 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Install sshpass
-      run: sudo apt-get install sshpass
-
-    - name: Copy files to server using password
+    - name: Add SSH key
       run: |
-        sshpass -p "${{ secrets.SERVER_PASSWORD }}" rsync -avz -e "ssh -o StrictHostKeyChecking=no" ./ minsu@180.80.36.198:/home/minsu/portfoliogit
+        mkdir -p ~/.ssh
+        echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+        chmod 600 ~/.ssh/id_rsa
+
+    - name: Copy files to server using SSH
+      run: |
+        rsync -avz -e "ssh -o StrictHostKeyChecking=no" ./ minsu@180.80.36.198:/home/minsu/portfoliogit

@@ -35,7 +35,7 @@ body {
 
 a {
     text-decoration: none;
-    color: #724CF9
+    color: #4C3B28
 }
 
 img {
@@ -139,16 +139,6 @@ img {
 
 .minsu.content .minsu.comment h2 {
     margin-bottom: 0
-}
-
-::-moz-selection {
-    background: #724CF9;
-    color: white
-}
-
-::selection {
-    background: #724CF9;
-    color: white
 }
 
 @media (prefers-color-scheme:dark) {

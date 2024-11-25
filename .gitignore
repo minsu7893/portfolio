@@ -1,3 +1,4 @@
 # VS Code 설정 파일 제외
 .vscode/
+# git 설정 파일 제외
 .git/

@@ -35,6 +35,7 @@ jobs:
           echo "Processing $file"
           html-minifier --collapse-whitespace --remove-comments --minify-js --minify-css "$file" > "$file.tmp"
           mv "$file.tmp" "$file"
+          echo "Contents of $file after minification:"
           cat "$file"
         done
 

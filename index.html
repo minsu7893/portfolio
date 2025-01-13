@@ -1,25 +1,23 @@
 <!DOCTYPE html>
-
-<!-- tes -->
-
 <html lang="ko">
-<head> 
+
+<head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="keywords" content="Minsu,blog,portfolio" />
   <meta name="description" content="Core Banking Developer<br>MINSU" />
   <meta name="author" content="Minsu" />
-  <meta name="theme-color" content="#4568f0" /> 
-  <meta name="msapplication-TileColor" content="#ffffff" /> 
+  <meta name="theme-color" content="#4568f0" />
+  <meta name="msapplication-TileColor" content="#ffffff" />
   <meta name="format-detection" content="telephone=no"><!-- 사파리 전화번호 인식 차단 -->
   <meta property="og:type" content="website" />
   <meta property="og:title" content=" Minsu" />
   <meta property="og:description" content='Minsu portfolio' />
-  <meta property="og:image" content="/assets/images/minsuphoto.jpeg" /> 
-  <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png" /> 
-  <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon-32x32.png" /> 
-  <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon-16x16.png" /> 
-  <link rel="mask-icon" href="/assets/images/safari-pinned-tab.svg" color="#4568f0" /> 
+  <meta property="og:image" content="/assets/images/minsuphoto.jpeg" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon-16x16.png" />
+  <link rel="mask-icon" href="/assets/images/safari-pinned-tab.svg" color="#4568f0" />
   <link rel="manifest" href="/assets/images/site.webmanifest" />
   <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-4-grid@3.3.0/css/grid.min.css" />
@@ -32,6 +30,7 @@
   <script src="/assets/js/minsu.js"></script>
   <title> Minsu</title>
 </head>
+
 <body>
   <header class="minsu header main">
     <nav class="minsu navbar-parent main">
@@ -95,11 +94,14 @@
         <div class="minsu content about">
           <h2>Core Banking Developer <br>Minsu<small class="minsu name"></small></h2>
           <p>안녕하세요! Core Banking Developer 김민수입니다!</p>
+          <p>다양한 경험을 통해 금융 분야에 대한 깊은 이해를 갖추고 있습니다.</p>
+          <p>또한, 항상 새로운 것을 배우고 성장하기 위해 노력하며, 변화하는 환경에서도 문제를 빠르게 파악하고 해결할 수 있는 능력을 보유하고 있습니다.</p>
+          <!-- <p>안녕하세요! Core Banking Developer 김민수입니다!</p>
           <p>저는 항상 새로운 기술과 도전에 열려있습니다. 문제를 해결하고 최상의 결과를 얻기 위해 노력하는 것을 즐기며 팀원들과의 협업을 통해 더 나은 솔루션을 찾고자 합니다.</p>
           <p>다양한 경험을 통해 금융 분야에 대한 깊은 이해를 갖추고 있습니다. 또한, 항상 새로운 것을 배우고 성장하기 위해 노력하며, 변화하는 환경에서도 빠르게 적응할 수 있는 능력을 보유하고
             있습니다.</p>
           <p>저는 열정과 탐구심을 통해 끊임없이 성장하고자 하는 개발자입니다. 작은 목표부터 시작하여 큰 꿈을 향해 나아가는 것을 즐기고 있습니다.
-          <p>또한, 여러 환경에서 금방 적응하며 빠르게 배우는 능력을 갖추고 있습니다. 이러한 능력을 바탕으로, 새로운 환경에서도 빠르게 적응하고, 최상의 결과를 이끌어 낼 수 있을 것입니다.</p>
+          <p>또한, 여러 환경에서 금방 적응하며 빠르게 배우는 능력을 갖추고 있습니다. 이러한 능력을 바탕으로, 새로운 환경에서도 빠르게 적응하고, 최상의 결과를 이끌어 낼 수 있을 것입니다.</p> -->
         </div>
       </div>
     </section>
@@ -113,128 +115,13 @@
       </div>
     </section>
     <!--프로젝트 헤더 종료-->
-    <!-- 프로젝트 1번 -->
-    <div class="minsu container">
-      <div class="minsu posts">
-        <div class="minsu post">
-          <a id="openModalBtn">
-            <h2 class="minsu post-title">🖱️ ISA 운영업무</h2>
-          </a>
-        </div>
-        <!-- Button to open the modal -->
-        <!-- 모달 -->
-        <div id="myModal" class="modal">
-          <!-- 모달 내용 -->
-          <div class="modal-content">
-            <!-- 모달 닫기 버튼 -->
-            <span class="close">&times;</span>
-            <!-- 외부 내용을 표시할 영역 -->
-            <div id="modalContent"></div>
-          </div>
-        </div>
-        <script>
-          // 모달 열기 버튼
-          var btn = document.getElementById("openModalBtn");
-          // 모달
-          var modal = document.getElementById("myModal");
-          // 모달 내용을 표시할 영역
-          var modalContent = document.getElementById("modalContent");
-          // 모달 닫기 버튼
-          var closeBtn = modal.querySelector(".close");
-          // 모달 열기 버튼에 클릭 이벤트 리스너 추가
-          btn.addEventListener("click", function () {
-            // 모달 열기
-            modal.style.display = 'block';
-            // AJAX 요청 보내기
-            fetch('projects.html')
-              .then(response => response.text())
-              .then(data => {
-                // 요청 성공 시 내용을 모달 내부에 삽입
-                modalContent.innerHTML = data;
-              })
-              .catch(error => console.error('Error fetching content:', error));
-          });
-          // 모달 닫기 버튼에 클릭 이벤트 리스너 추가
-          closeBtn.addEventListener("click", function () {
-            // 모달 닫기
-            modal.style.display = "none";
-            // 모달 내용 초기화
-            modalContent.innerHTML = '';
-          });
-          // 사용자가 모달 바깥을 클릭했을 때 모달 닫기
-          window.addEventListener("click", function (event) {
-            if (event.target === modal) {
-              modal.style.display = "none";
-              modalContent.innerHTML = '';
-            }
-          });
-        </script>
-      </div>
-    </div>
-    <!-- 프로젝트 2번 -->
-    <div class="minsu container">
-      <div class="minsu posts">
-        <div class="minsu post">
-          <a id="openModalBtn2">
-            <h2 class="minsu post-title">🖱️ ISA 개발업무</h2>
-          </a>
-        </div>
-        <!-- Button to open the modal -->
-        <!-- 모달 -->
-        <div id="myModal2" class="modal">
-          <!-- 모달 내용 -->
-          <div class="modal-content">
-            <!-- 모달 닫기 버튼 -->
-            <span class="close">&times;</span>
-            <!-- 외부 내용을 표시할 영역 -->
-            <div id="modalContent2"></div>
-          </div>
-        </div>
-        <script>
-          // 모달 열기 버튼
-          var btn = document.getElementById("openModalBtn2");
-          // 모달
-          var modal = document.getElementById("myModal2");
-          // 모달 내용을 표시할 영역
-          var modalContent = document.getElementById("modalContent2");
-          // 모달 닫기 버튼
-          var closeBtn = modal.querySelector(".close");
-          // 모달 열기 버튼에 클릭 이벤트 리스너 추가
-          btn.addEventListener("click", function () {
-            // 모달 열기
-            modal.style.display = "block";
-            // AJAX 요청 보내기
-            fetch('projects2.html')
-              .then(response => response.text())
-              .then(data => {
-                // 요청 성공 시 내용을 모달 내부에 삽입
-                modalContent.innerHTML = data;
-              })
-              .catch(error => console.error('Error fetching content:', error));
-          });
-          // 모달 닫기 버튼에 클릭 이벤트 리스너 추가
-          closeBtn.addEventListener("click", function () {
-            // 모달 닫기
-            modal.style.display = "none";
-            // 모달 내용 초기화
-            modalContent.innerHTML = '';
-          });
-          // 사용자가 모달 바깥을 클릭했을 때 모달 닫기
-          window.addEventListener("click", function (event) {
-            if (event.target === modal) {
-              modal.style.display = "none";
-              modalContent.innerHTML = '';
-            }
-          });
-        </script>
-      </div>
-    </div>
-    <!-- 프로젝트 3번 -->
+    <!--프로젝트 내용 시작-->
+    <!-- 프로젝트 퇴직연금 전략사업 개발 시작 -->
     <div class="minsu container">
       <div class="minsu posts">
         <div class="minsu post">
           <a id="openModalBtn3">
-            <h2 class="minsu post-title">🖱️ 퇴직연금 전략사업 개발 TFT</h2>
+            <h2 class="minsu post-title">🖱️ 퇴직연금 전략사업 개발</h2>
           </a>
         </div>
         <!-- Button to open the modal -->
@@ -288,7 +175,126 @@
       </div>
     </div>
   </section>
-  <!--프로젝트 부분 종료-->
+  <!-- 프로젝트 퇴직연금 전략사업 개발 종료 -->
+  <!-- 프로젝트 ISA 개발업무 시작 -->
+  <div class="minsu container">
+    <div class="minsu posts">
+      <div class="minsu post">
+        <a id="openModalBtn2">
+          <h2 class="minsu post-title">🖱️ ISA 개발업무</h2>
+        </a>
+      </div>
+      <!-- Button to open the modal -->
+      <!-- 모달 -->
+      <div id="myModal2" class="modal">
+        <!-- 모달 내용 -->
+        <div class="modal-content">
+          <!-- 모달 닫기 버튼 -->
+          <span class="close">&times;</span>
+          <!-- 외부 내용을 표시할 영역 -->
+          <div id="modalContent2"></div>
+        </div>
+      </div>
+      <script>
+        // 모달 열기 버튼
+        var btn = document.getElementById("openModalBtn2");
+        // 모달
+        var modal = document.getElementById("myModal2");
+        // 모달 내용을 표시할 영역
+        var modalContent = document.getElementById("modalContent2");
+        // 모달 닫기 버튼
+        var closeBtn = modal.querySelector(".close");
+        // 모달 열기 버튼에 클릭 이벤트 리스너 추가
+        btn.addEventListener("click", function () {
+          // 모달 열기
+          modal.style.display = "block";
+          // AJAX 요청 보내기
+          fetch('projects2.html')
+            .then(response => response.text())
+            .then(data => {
+              // 요청 성공 시 내용을 모달 내부에 삽입
+              modalContent.innerHTML = data;
+            })
+            .catch(error => console.error('Error fetching content:', error));
+        });
+        // 모달 닫기 버튼에 클릭 이벤트 리스너 추가
+        closeBtn.addEventListener("click", function () {
+          // 모달 닫기
+          modal.style.display = "none";
+          // 모달 내용 초기화
+          modalContent.innerHTML = '';
+        });
+        // 사용자가 모달 바깥을 클릭했을 때 모달 닫기
+        window.addEventListener("click", function (event) {
+          if (event.target === modal) {
+            modal.style.display = "none";
+            modalContent.innerHTML = '';
+          }
+        });
+      </script>
+    </div>
+  </div>
+  <!-- 프로젝트 ISA 개발업무 종료 -->
+  <!-- 프로젝트 ISA 개발업무 시작 -->
+  <div class="minsu container">
+    <div class="minsu posts">
+      <div class="minsu post">
+        <a id="openModalBtn">
+          <h2 class="minsu post-title">🖱️ ISA 운영업무</h2>
+        </a>
+      </div>
+      <!-- Button to open the modal -->
+      <!-- 모달 -->
+      <div id="myModal" class="modal">
+        <!-- 모달 내용 -->
+        <div class="modal-content">
+          <!-- 모달 닫기 버튼 -->
+          <span class="close">&times;</span>
+          <!-- 외부 내용을 표시할 영역 -->
+          <div id="modalContent"></div>
+        </div>
+      </div>
+      <script>
+        // 모달 열기 버튼
+        var btn = document.getElementById("openModalBtn");
+        // 모달
+        var modal = document.getElementById("myModal");
+        // 모달 내용을 표시할 영역
+        var modalContent = document.getElementById("modalContent");
+        // 모달 닫기 버튼
+        var closeBtn = modal.querySelector(".close");
+        // 모달 열기 버튼에 클릭 이벤트 리스너 추가
+        btn.addEventListener("click", function () {
+          // 모달 열기
+          modal.style.display = 'block';
+          // AJAX 요청 보내기
+          fetch('projects.html')
+            .then(response => response.text())
+            .then(data => {
+              // 요청 성공 시 내용을 모달 내부에 삽입
+              modalContent.innerHTML = data;
+            })
+            .catch(error => console.error('Error fetching content:', error));
+        });
+        // 모달 닫기 버튼에 클릭 이벤트 리스너 추가
+        closeBtn.addEventListener("click", function () {
+          // 모달 닫기
+          modal.style.display = "none";
+          // 모달 내용 초기화
+          modalContent.innerHTML = '';
+        });
+        // 사용자가 모달 바깥을 클릭했을 때 모달 닫기
+        window.addEventListener("click", function (event) {
+          if (event.target === modal) {
+            modal.style.display = "none";
+            modalContent.innerHTML = '';
+          }
+        });
+      </script>
+    </div>
+  </div>
+  <!-- 프로젝트 ISA 개발업무 종료 -->
+  <!--프로젝트 내용 종료-->
   <!-- About ME 시작-->
   <section id="About" class="minsu main">
     <div class="minsu jumbotron">
@@ -314,7 +320,7 @@
         <div class="minsu career divider">
           <div class="minsu career-place">IBK기업은행 IT금융개발부</div>
           <div class="minsu career-desc">
-            <p class="minsu career-role">퇴직연금 전략사업 개발 TFT</p>
+            <p class="minsu career-role">퇴직연금 전략사업 개발</p>
             <p class="minsu career-role">제도신설 및 변경, 업무효율화, 시스템안정화</p>
             <p class="minsu career-duration">2024-01 ~ 현재</p>
           </div>
@@ -582,4 +588,5 @@
     </div>
   </footer>
 </body>
+
 </html>

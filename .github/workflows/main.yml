@@ -34,7 +34,7 @@ jobs:
         set -x
         for file in $(find . -name '*.html'); do
           echo "Processing $file"
-          html-minifier --collapse-whitespace --remove-comments --minify-js --minify-css "$file" -o "$file"
+          html-minifier --config-file html-minifier.json -o "$file" "$file"
           if [ $? -ne 0 ]; then
             echo "Error processing $file"
             exit 1

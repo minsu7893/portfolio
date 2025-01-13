@@ -1,0 +1,11 @@
+{
+    "collapseWhitespace": true,
+    "removeComments": true,
+    "minifyJS": true,
+    "minifyCSS": true,
+    "removeEmptyAttributes": true,
+    "removeOptionalTags": true,
+    "removeRedundantAttributes": true,
+    "caseSensitive": true,
+    "ignoreCustomComments": []
+  }

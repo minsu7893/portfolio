@@ -13,6 +13,22 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '16' # Node.js 설치
+
+    - name: Install html-minifier
+      run: |
+        npm install -g html-minifier
+
+    - name: Obfuscate HTML files
+      run: |
+        mkdir -p dist
+        for file in $(find . -name '*.html'); do
+          html-minifier --collapse-whitespace --remove-comments --minify-js --minify-css "$file" -o "dist/$(basename $file)"
+        done
+
     - name: Add SSH key
       run: |
         mkdir -p ~/.ssh

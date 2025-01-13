@@ -40,9 +40,9 @@ jobs:
       run: |
         mkdir -p dist
         for file in $(find . -name '*.html'); do
-          html-minifier --collapse-whitespace --remove-comments --minify-js --minify-css --remove-attribute-quotes "$file" -o "dist/$(basename $file)"
+          html-minifier --collapse-whitespace --remove-comments --minify-js --minify-css --ignore-custom-comments '^\s*$' "$file" -o "dist/$(basename $file)"
         done
-
+        
     - name: Copy files to server using SSH
       run: |
         rsync -avz -e "ssh -o StrictHostKeyChecking=no" ./ ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }}:${{ secrets.TARGET_DIRECTORY }}

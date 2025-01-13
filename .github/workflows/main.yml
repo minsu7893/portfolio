@@ -22,13 +22,6 @@ jobs:
       run: |
         npm install -g html-minifier
 
-    - name: Obfuscate HTML files
-      run: |
-        mkdir -p dist
-        for file in $(find . -name '*.html'); do
-          html-minifier --collapse-whitespace --remove-comments --minify-js --minify-css "$file" -o "dist/$(basename $file)"
-        done
-
     - name: Add SSH key
       run: |
         mkdir -p ~/.ssh
@@ -38,9 +31,8 @@ jobs:
 
     - name: Obfuscate HTML files
       run: |
-        mkdir -p dist
         for file in $(find . -name '*.html'); do
-          html-minifier --collapse-whitespace --remove-comments --minify-js --minify-css --ignore-custom-comments '^\s*$' "$file" -o "dist/$(basename $file)"
+          html-minifier --collapse-whitespace --remove-comments --minify-js --minify-css "$file" -o "$(basename $file)"
         done
         
     - name: Copy files to server using SSH

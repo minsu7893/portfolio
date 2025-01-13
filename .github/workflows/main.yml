@@ -32,7 +32,9 @@ jobs:
     - name: Obfuscate HTML files
       run: |
         for file in $(find . -name '*.html'); do
-          html-minifier --collapse-whitespace --remove-comments --minify-js --minify-css "$file" -o "$file"
+          echo "Processing $file"
+          html-minifier --collapse-whitespace --remove-comments --minify-js --minify-css "$file" > "$file.tmp"
+          mv "$file.tmp" "$file"
         done
 
     - name: Copy files to server using SSH

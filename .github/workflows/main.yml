@@ -34,15 +34,11 @@ jobs:
         set -x
         for file in $(find . -name '*.html'); do
           echo "Processing $file"
-          html-minifier --collapse-whitespace --remove-comments --minify-js --minify-css "$file" > "$file.tmp" 2>&1
+          html-minifier --collapse-whitespace --remove-comments --minify-js --minify-css "$file" -o "$file"
           if [ $? -ne 0 ]; then
             echo "Error processing $file"
-            cat "$file.tmp"
             exit 1
           fi
-          mv "$file.tmp" "$file"
-          echo "빈파일 확인"
-          cat "$file.tmp"
           echo "Contents of $file after minification:"
           cat "$file"
         done

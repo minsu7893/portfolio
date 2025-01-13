@@ -35,12 +35,18 @@ jobs:
           echo "Original Contents of $file:"
           cat "$file"
         done
-        
+
     - name: Obfuscate HTML files
       run: |
+        set -x
         for file in $(find . -name '*.html'); do
           echo "Processing $file"
-          html-minifier --collapse-whitespace --remove-comments --minify-js --minify-css "$file" > "$file.tmp"
+          html-minifier --collapse-whitespace --remove-comments --minify-js --minify-css "$file" > "$file.tmp" 2>&1
+          if [ $? -ne 0 ]; then
+            echo "Error processing $file"
+            cat "$file.tmp"
+            exit 1
+          fi
           mv "$file.tmp" "$file"
           echo "Contents of $file after minification:"
           cat "$file"

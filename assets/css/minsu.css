@@ -1366,6 +1366,7 @@ hr {
 }
 
 .minsu.career-wrapper .minsu.career .minsu.career-desc .minsu.career-duration {
+    font-family: Arial, sans-serif;
     font-weight: 500;
     font-size: 0.9rem;
     color: #aaaab3

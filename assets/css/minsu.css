@@ -1065,6 +1065,26 @@ img {
     transition: background-color 0.5s ease
 }
 
+.skill-bar {
+    width: 100px;
+    height: 5px;
+    background-color: #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+    margin-top: 5px;
+}
+
+.skill-bar div {
+    height: 100%;
+    transition: width 0.5s ease;
+}
+
+/* 숙련도별 */
+.beginner-bar { width: 30%; background-color: #ff6b6b; } /* 하 */
+.intermediate-bar { width: 60%; background-color: #ffd93d; } /* 중 */
+.expert-bar { width: 90%; background-color: #4caf50; } /* 상 */
+
+
 @media (max-width:768px) {
     .minsu.tags .minsu.tag {
         font-size: 0.75rem

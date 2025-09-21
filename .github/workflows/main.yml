@@ -2,66 +2,47 @@ name: Deploy to Ubuntu Server with SSH Key
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+    - name: Checkout code
+      uses: actions/checkout@v2
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '18'   # 16은 EOL, 18 LTS 권장
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '16' # Node.js 설치
 
-      - name: Install html-minifier
-        run: npm install -g html-minifier
+    - name: Install html-minifier
+      run: |
+        npm install -g html-minifier
 
-      # ssh-agent 시작 + 비밀키 등록 (패스프레이즈 키도 지원)
-      - name: Start ssh-agent and add key
-        uses: webfactory/ssh-agent@v0.9.0
-        with:
-          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+    - name: Add SSH key
+      run: |
+        mkdir -p ~/.ssh
+        echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+        chmod 600 ~/.ssh/id_rsa
+        ssh-keyscan ${{ secrets.SERVER_IP }} >> ~/.ssh/known_hosts
 
-      - name: Obfuscate HTML files
-        run: |
-          set -x
-          for file in $(find . -name '*.html'); do
-            echo "Processing $file"
-            html-minifier --config-file html-minifier.json -o "$file" "$file"
-          done
+    - name: Obfuscate HTML files
+      run: |
+        set -x
+        for file in $(find . -name '*.html'); do
+          echo "Processing $file"
+          html-minifier --config-file html-minifier.json -o "$file" "$file"
+          if [ $? -ne 0 ]; then
+            echo "Error processing $file"
+            exit 1
+          fi
+          echo "Contents of $file after minification:"
+          cat "$file"
+        done
 
-      - name: Diagnose connectivity
-        run: |
-          set -x
-
-          echo "== DNS/호스트 확인 =="
-          getent hosts "${{ secrets.SERVER_IP }}" || true
-
-          echo "== 포트 접근성 체크 (TCP) =="
-          PORT="${{ secrets.SERVER_PORT || '22' }}"
-          timeout 5 bash -c "cat < /dev/null > /dev/tcp/${{ secrets.SERVER_IP }}/$PORT" \
-            && echo "TCP $PORT reachable" || { echo "TCP $PORT NOT reachable"; exit 2; }
-
-          echo "== ssh-agent에 로드된 키 확인 =="
-          ssh-add -l || true
-
-          echo "== SSH 배치모드 테스트 (상세로그) =="
-          ssh -vvv \
-            -o BatchMode=yes \
-            -o StrictHostKeyChecking=no \
-            -p "$PORT" \
-            "${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }}" "echo connected"
-
-
-      - name: Copy files to server using SSH
-        run: |
-          rsync -avz \
-            --timeout=30 \
-            --exclude '.git' \
-            --exclude 'node_modules' \
-            -e "ssh -o BatchMode=yes -o StrictHostKeyChecking=no" \
-            ./ "${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }}:${{ secrets.TARGET_DIRECTORY }}"
+    - name: Copy files to server using SSH
+      run: |
+        rsync -avz -e "ssh -o StrictHostKeyChecking=no" ./ ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }}:${{ secrets.TARGET_DIRECTORY }}

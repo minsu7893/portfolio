@@ -42,6 +42,13 @@ jobs:
             html-minifier --config-file html-minifier.json -o "$file" "$file"
           done
 
+      - name: Network quick check
+        run: |
+          set -euxo pipefail
+          sudo apt-get update && sudo apt-get install -y netcat-openbsd
+          echo "Testing TCP to ${ { secrets.SERVER_IP } }:${ { secrets.SSH_PORT || '22' } }"
+          nc -vz -w 5 ${{ secrets.SERVER_IP }} ${{ secrets.SSH_PORT || '22' }} || true
+
       - name: Rsync to server
         run: |
           rsync -avz -e "ssh -o StrictHostKeyChecking=no" ./ \

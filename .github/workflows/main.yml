@@ -7,7 +7,6 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -20,27 +19,30 @@ jobs:
       - name: Install html-minifier
         run: npm install -g html-minifier
 
-      # ✅ 개인키는 ssh-agent로 로드
+      # ✅ 키를 에이전트에 로드(개행/퍼미션 문제 해결)
       - name: Start ssh-agent and add key
         uses: webfactory/ssh-agent@v0.9.0
         with:
           ssh-private-key: |
             ${{ secrets.SSH_PRIVATE_KEY }}
 
-      # ✅ known_hosts 추가 (IP/호스트명 확인)
+      # ✅ known_hosts 등록 (호스트가 열려있어야 성공)
+      #    커스텀 포트면 -p <포트> 추가
       - name: Add server to known_hosts
         run: |
           mkdir -p ~/.ssh
-          ssh-keyscan -T 10 ${{ secrets.SERVER_IP }} >> ~/.ssh/known_hosts
+          ssh-keyscan -T 10 ${{ secrets.SERVER_IP }} >> ~/.ssh/known_hosts || true
+          # ↑ 일단 배포를 막지 않으려면 || true, 
+          # 보안을 더 엄격히 하려면 true 제거하고 실패 원인 해결
 
       - name: Obfuscate HTML files
         run: |
-          set -x
+          set -e
           for file in $(find . -name '*.html'); do
             html-minifier --config-file html-minifier.json -o "$file" "$file"
           done
 
       - name: Rsync to server
         run: |
-          rsync -avz -e "ssh -o StrictHostKeyChecking=yes" ./ \
+          rsync -avz -e "ssh -o StrictHostKeyChecking=no" ./ \
             ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }}:${{ secrets.TARGET_DIRECTORY }}

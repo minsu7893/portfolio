@@ -38,6 +38,9 @@ jobs:
             ssh-keyscan -4 -T 10 "$SERVER_IP" >> ~/.ssh/known_hosts || true
           fi
 
+      - name: Show runner egress IP (IPv4)
+        run: curl -4 ifconfig.me
+
       - name: Network quick check (from runner)
         run: |
           set -euxo pipefail

@@ -27,19 +27,39 @@ jobs:
             ${{ secrets.SSH_PRIVATE_KEY }}
 
       - name: Add server to known_hosts
+        env:
+          SSH_PORT: ${{ secrets.SSH_PORT }}
+          SERVER_IP: ${{ secrets.SERVER_IP }}
         run: |
-          mkdir -p ~/.ssh
-          ssh-keyscan -4 -T 10 -p ${{ secrets.SSH_PORT }} ${{ secrets.SERVER_IP }} >> ~/.ssh/known_hosts || true
+          set -euxo pipefail
+          if [ -n "${SSH_PORT:-}" ]; then
+            ssh-keyscan -4 -T 10 -p "$SSH_PORT" "$SERVER_IP" >> ~/.ssh/known_hosts || true
+          else
+            ssh-keyscan -4 -T 10 "$SERVER_IP" >> ~/.ssh/known_hosts || true
+          fi
 
       - name: Rsync to server
         env:
-          SSH_CMD: >-
-            ssh -4
-            -p ${{ secrets.SSH_PORT }}
-            -o ConnectTimeout=10
-            -o ServerAliveInterval=5
-            -o ServerAliveCountMax=3
-            -o StrictHostKeyChecking=no
+          SERVER_USER: ${{ secrets.SERVER_USER }}
+          SERVER_IP:   ${{ secrets.SERVER_IP }}
+          TARGET_DIRECTORY: ${{ secrets.TARGET_DIRECTORY }}
+          SSH_PORT:    ${{ secrets.SSH_PORT }}   # 비워두면 22로 처리
         run: |
+          set -euxo pipefail
+
+          # 포트 옵션 만들기 (비어 있으면 22)
+          if [ -n "${SSH_PORT:-}" ]; then
+            PORT_OPT="-p ${SSH_PORT}"
+          else
+            PORT_OPT="-p 22"
+          fi
+
+          SSH_CMD="ssh -4 ${PORT_OPT} \
+            -o ConnectTimeout=10 \
+            -o ServerAliveInterval=5 \
+            -o ServerAliveCountMax=3 \
+            -o StrictHostKeyChecking=no"
+
+          echo "Using: $SSH_CMD"
           rsync -avz -e "$SSH_CMD" ./ \
-            ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }}:${{ secrets.TARGET_DIRECTORY }}
+            "$SERVER_USER@$SERVER_IP:$TARGET_DIRECTORY"

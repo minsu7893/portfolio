@@ -2,46 +2,49 @@ name: Deploy to Ubuntu Server with SSH Key
 
 on:
   push:
-    branches:
-      - main
+    branches: [ main ]
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-    - name: Setup Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '16' # Node.js 설치
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'   # 16은 EOL, 18 LTS 권장
 
-    - name: Install html-minifier
-      run: |
-        npm install -g html-minifier
+      - name: Install html-minifier
+        run: npm install -g html-minifier
 
-    - name: Add SSH key
-      run: |
-        mkdir -p ~/.ssh
-        printf '%s\n' "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
-        chmod 600 ~/.ssh/id_rsa
+      # ssh-agent 시작 + 비밀키 등록 (패스프레이즈 키도 지원)
+      - name: Start ssh-agent and add key
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
-    - name: Obfuscate HTML files
-      run: |
-        set -x
-        for file in $(find . -name '*.html'); do
-          echo "Processing $file"
-          html-minifier --config-file html-minifier.json -o "$file" "$file"
-          if [ $? -ne 0 ]; then
-            echo "Error processing $file"
-            exit 1
-          fi
-          echo "Contents of $file after minification:"
-          cat "$file"
-        done
+      - name: Obfuscate HTML files
+        run: |
+          set -x
+          for file in $(find . -name '*.html'); do
+            echo "Processing $file"
+            html-minifier --config-file html-minifier.json -o "$file" "$file"
+          done
 
-    - name: Copy files to server using SSH
-      run: |
-        rsync -avz -e "ssh -o StrictHostKeyChecking=no" ./ ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }}:${{ secrets.TARGET_DIRECTORY }}
+      # SSH 접속이 실제로 되는지 테스트
+      - name: Test SSH connection
+        run: |
+          ssh -o BatchMode=yes -o StrictHostKeyChecking=no \
+              "${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }}" "echo connected"
+
+      - name: Copy files to server using SSH
+        run: |
+          rsync -avz \
+            --timeout=30 \
+            --exclude '.git' \
+            --exclude 'node_modules' \
+            -e "ssh -o BatchMode=yes -o StrictHostKeyChecking=no" \
+            ./ "${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }}:${{ secrets.TARGET_DIRECTORY }}"

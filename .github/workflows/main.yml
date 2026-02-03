@@ -14,17 +14,32 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '16'
+          node-version: '20' # 최신 LTS 권장
 
-      - name: Install html-minifier
-        run: npm install -g html-minifier
+      - name: Install html-minifier-terser
+        run: npm install -g html-minifier-terser
 
-      # Secrets: SSH_PRIVATE_KEY, SERVER_USER, SERVER_IP, TARGET_DIRECTORY, SSH_PORT(예: 22)
+      # 추가된 부분: HTML 난독화 및 압축
+      - name: Minify HTML
+        run: |
+          # dist 폴더가 없다면 생성 (결과물을 담을 곳)
+          # 만약 소스 자체를 변환하려면 필요에 따라 경로를 수정하세요.
+          find . -name "*.html" -not -path "./node_modules/*" | while read -r file; do
+            echo "Minifying $file..."
+            html-minifier-terser "$file" \
+              --collapse-whitespace \
+              --remove-comments \
+              --remove-redundant-attributes \
+              --remove-script-type-attributes \
+              --minify-css true \
+              --minify-js true \
+              -o "$file"
+          done
+
       - name: Start ssh-agent and add key
         uses: webfactory/ssh-agent@v0.9.0
         with:
-          ssh-private-key: |
-            ${{ secrets.SSH_PRIVATE_KEY }}
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
       - name: Add server to known_hosts
         env:
@@ -32,44 +47,20 @@ jobs:
           SERVER_IP: ${{ secrets.SERVER_IP }}
         run: |
           set -euxo pipefail
-          if [ -n "${SSH_PORT:-}" ]; then
-            ssh-keyscan -4 -T 10 -p "$SSH_PORT" "$SERVER_IP" >> ~/.ssh/known_hosts || true
-          else
-            ssh-keyscan -4 -T 10 "$SERVER_IP" >> ~/.ssh/known_hosts || true
-          fi
-
-      - name: Show runner egress IP (IPv4)
-        run: curl -4 ifconfig.me
-
-      - name: Network quick check (from runner)
-        run: |
-          set -euxo pipefail
-          sudo apt-get update && sudo apt-get install -y netcat-openbsd
-          echo "Test to ${{ secrets.SERVER_IP }}:${SSH_PORT:-22}"
-          nc -vz -4 -w 5 ${{ secrets.SERVER_IP }} ${SSH_PORT:-22}
+          PORT="${SSH_PORT:-22}"
+          ssh-keyscan -4 -T 10 -p "$PORT" "$SERVER_IP" >> ~/.ssh/known_hosts || true
 
       - name: Rsync to server
         env:
           SERVER_USER: ${{ secrets.SERVER_USER }}
           SERVER_IP:   ${{ secrets.SERVER_IP }}
           TARGET_DIRECTORY: ${{ secrets.TARGET_DIRECTORY }}
-          SSH_PORT:    ${{ secrets.SSH_PORT }}   # 비워두면 22로 처리
+          SSH_PORT:    ${{ secrets.SSH_PORT }}
         run: |
           set -euxo pipefail
-
-          # 포트 옵션 만들기 (비어 있으면 22)
-          if [ -n "${SSH_PORT:-}" ]; then
-            PORT_OPT="-p ${SSH_PORT}"
-          else
-            PORT_OPT="-p 22"
-          fi
-
-          SSH_CMD="ssh -4 ${PORT_OPT} \
-            -o ConnectTimeout=10 \
-            -o ServerAliveInterval=5 \
-            -o ServerAliveCountMax=3 \
-            -o StrictHostKeyChecking=no"
-
-          echo "Using: $SSH_CMD"
-          rsync -avz -e "$SSH_CMD" ./ \
+          PORT_OPT="-p ${SSH_PORT:-22}"
+          SSH_CMD="ssh -4 ${PORT_OPT} -o ConnectTimeout=10 -o StrictHostKeyChecking=no"
+          
+          # .git 등 불필요한 파일 제외하고 전송
+          rsync -avz --exclude '.git*' -e "$SSH_CMD" ./ \
             "$SERVER_USER@$SERVER_IP:$TARGET_DIRECTORY"

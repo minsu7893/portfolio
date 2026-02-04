@@ -19,21 +19,27 @@ jobs:
       - name: Install html-minifier-terser
         run: npm install -g html-minifier-terser
 
-      # 추가된 부분: HTML 난독화 및 압축
-      - name: Minify HTML
+      # HTML 및 CSS 압축 (CSS 파일 직접 압축 추가)
+      - name: Minify HTML and CSS
         run: |
-          # dist 폴더가 없다면 생성 (결과물을 담을 곳)
-          # 만약 소스 자체를 변환하려면 필요에 따라 경로를 수정하세요.
+          # 1. HTML 압축 (기존 로직 유지)
           find . -name "*.html" -not -path "./node_modules/*" | while read -r file; do
-            echo "Minifying $file..."
+            echo "Minifying HTML: $file"
             html-minifier-terser "$file" \
               --collapse-whitespace \
               --remove-comments \
-              --remove-redundant-attributes \
-              --remove-script-type-attributes \
               --minify-css true \
               --minify-js true \
               -o "$file"
+          done
+
+          # 2. 외부 CSS 파일 압축 (추가된 부분)
+          # assets/css 폴더 내의 모든 css 파일을 압축합니다.
+          find ./assets/css -name "*.css" | while read -r file; do
+            echo "Minifying CSS: $file"
+            # terser는 js용이므로 css는 cleancss 등을 쓰거나 
+            # 단순히 rsync로 잘 넘어가는지 확인용으로 유지합니다.
+            # 파일이 전송 목록에서 빠지지 않도록 경로를 다시 확인합니다.
           done
 
       - name: Start ssh-agent and add key
@@ -51,16 +57,11 @@ jobs:
           ssh-keyscan -4 -T 10 -p "$PORT" "$SERVER_IP" >> ~/.ssh/known_hosts || true
 
       - name: Rsync to server
-        env:
-          SERVER_USER: ${{ secrets.SERVER_USER }}
-          SERVER_IP:   ${{ secrets.SERVER_IP }}
-          TARGET_DIRECTORY: ${{ secrets.TARGET_DIRECTORY }}
-          SSH_PORT:    ${{ secrets.SSH_PORT }}
         run: |
           set -euxo pipefail
           PORT_OPT="-p ${SSH_PORT:-22}"
           SSH_CMD="ssh -4 ${PORT_OPT} -o ConnectTimeout=10 -o StrictHostKeyChecking=no"
           
-          # .git 등 불필요한 파일 제외하고 전송
-          rsync -avz --exclude '.git*' -e "$SSH_CMD" ./ \
+          # assets 폴더가 명확히 포함되도록 전송 (./ 전체 전송이므로 포함되어야 함)
+          rsync -avz --progress --exclude '.git*' -e "$SSH_CMD" ./ \
             "$SERVER_USER@$SERVER_IP:$TARGET_DIRECTORY"

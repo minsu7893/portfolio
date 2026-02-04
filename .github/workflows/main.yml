@@ -57,11 +57,22 @@ jobs:
           ssh-keyscan -4 -T 10 -p "$PORT" "$SERVER_IP" >> ~/.ssh/known_hosts || true
 
       - name: Rsync to server
+        env:
+          SERVER_USER: ${{ secrets.SERVER_USER }}
+          SERVER_IP:   ${{ secrets.SERVER_IP }}
+          TARGET_DIRECTORY: ${{ secrets.TARGET_DIRECTORY }}
+          SSH_PORT:    ${{ secrets.SSH_PORT }}
         run: |
           set -euxo pipefail
+          # 변수가 없을 경우를 대비해 한번 더 체크
+          USER="${SERVER_USER:-}"
+          if [ -z "$USER" ]; then
+            echo "Error: SERVER_USER secret is not set."
+            exit 1
+          fi
+          
           PORT_OPT="-p ${SSH_PORT:-22}"
           SSH_CMD="ssh -4 ${PORT_OPT} -o ConnectTimeout=10 -o StrictHostKeyChecking=no"
           
-          # assets 폴더가 명확히 포함되도록 전송 (./ 전체 전송이므로 포함되어야 함)
-          rsync -avz --progress --exclude '.git*' -e "$SSH_CMD" ./ \
-            "$SERVER_USER@$SERVER_IP:$TARGET_DIRECTORY"
+          rsync -avz --exclude '.git*' -e "$SSH_CMD" ./ \
+            "$USER@$SERVER_IP:$TARGET_DIRECTORY"

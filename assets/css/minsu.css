@@ -145,7 +145,10 @@ img {
     body {
         background: #222
     }
-
+    .minsu.jumbotron, .minsu.container, .minsu.post {
+        background-color: #1e1e1e !important; /* 컨테이너 배경도 어둡게 */
+        color: #ffffff !important;
+    }
     .minsu.navbar-parent.minsu.navbar-bg {
         background-color: rgba(43, 43, 43, 0.9) !important
     }

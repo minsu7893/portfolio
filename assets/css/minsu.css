@@ -145,8 +145,9 @@ img {
     body {
         background: #222
     }
-    .minsu.jumbotron, .minsu.container, .minsu.post {
-        color: #ffffff !important;
+    .minsu.post:hover .post-title {
+        color: #4568f0 !important; /* 민수님의 테마 블루 컬러로 변경 */
+        /* 또는 더 밝은 색상을 원하시면 #00d4ff (하늘색) 추천 */
     }
     .minsu.navbar-parent.minsu.navbar-bg {
         background-color: rgba(43, 43, 43, 0.9) !important

@@ -107,67 +107,54 @@
     </section>
     <!-- Introduce 종료-->
     <!--프로젝트 헤더 시작-->
-<section id="Projects">
-  <div class="minsu jumbotron">
-    <div class="minsu container">
-      <h1>Projects</h1>
-      <p style="color: #666; margin-top: 15px; font-weight: 400; font-size: 0.95rem;">
-        💡 프로젝트를 클릭하시면 상세 설계 내용과 기술적 해결 과정을 확인하실 수 있습니다.
-      </p>
-    </div>
-  </div>
-</section>
+    <section id="Projects">
+      <div class="minsu jumbotron">
+        <div class="minsu container">
+          <h1>Projects</h1>
+          <p style="color: #666; margin-top: 15px; font-weight: 400; font-size: 0.95rem;">
+            💡 프로젝트를 클릭하시면 상세 설계 내용과 기술적 해결 과정을 확인하실 수 있습니다.
+          </p>
+        </div>
+      </div>
+    </section>
     <!--프로젝트 헤더 종료-->
     <!--프로젝트 내용 시작-->
     <!-- 프로젝트 퇴직연금 전산 아키텍처 설계 및 분석 시작 -->
     <div class="minsu container">
       <div class="minsu posts">
-        <div class="minsu post">
-          <a id="openModalBtn4">
-            <h2 class="minsu post-title">🖱️ 현대차증권 - 퇴직연금 전산 아키텍처 설계 및 분석</h2>
-          </a>
+        <div id="openModalBtn4" class="minsu post" style="cursor: pointer;">
+          <h2 class="minsu post-title">🖱️ 현대차증권 - 퇴직연금 전산 아키텍처 설계 및 분석</h2>
         </div>
-        <!-- Button to open the modal -->
-        <!-- 모달 -->
+
         <div id="myModal4" class="modal">
-          <!-- 모달 내용 -->
           <div class="modal-content">
-            <!-- 모달 닫기 버튼 -->
             <span class="close">&times;</span>
-            <!-- 외부 내용을 표시할 영역 -->
             <div id="modalContent4"></div>
           </div>
         </div>
+
         <script>
-          // 모달 열기 버튼
+          // 이제 'openModalBtn4'는 .post 전체를 가리킵니다.
           var btn = document.getElementById("openModalBtn4");
-          // 모달
           var modal = document.getElementById("myModal4");
-          // 모달 내용을 표시할 영역
           var modalContent = document.getElementById("modalContent4");
-          // 모달 닫기 버튼
           var closeBtn = modal.querySelector(".close");
-          // 모달 열기 버튼에 클릭 이벤트 리스너 추가
+
           btn.addEventListener("click", function () {
-            // 모달 열기
             modal.style.display = "block";
-            // AJAX 요청 보내기
             fetch('projects4.html')
               .then(response => response.text())
               .then(data => {
-                // 요청 성공 시 내용을 모달 내부에 삽입
                 modalContent.innerHTML = data;
               })
               .catch(error => console.error('Error fetching content:', error));
           });
-          // 모달 닫기 버튼에 클릭 이벤트 리스너 추가
+
           closeBtn.addEventListener("click", function () {
-            // 모달 닫기
             modal.style.display = "none";
-            // 모달 내용 초기화
             modalContent.innerHTML = '';
           });
-          // 사용자가 모달 바깥을 클릭했을 때 모달 닫기
+
           window.addEventListener("click", function (event) {
             if (event.target === modal) {
               modal.style.display = "none";
@@ -177,200 +164,162 @@
         </script>
       </div>
     </div>
-  </section>
-  <!-- 프로젝트 퇴직연금 전산 아키텍처 설계 및 분석 종료 -->
-  <!-- 프로젝트 퇴직연금 전략사업 개발 시작 -->
-  <div class="minsu container">
-    <div class="minsu posts">
-      <div class="minsu post">
-        <a id="openModalBtn3">
+    <!-- 프로젝트 퇴직연금 전산 아키텍처 설계 및 분석 종료 -->
+    <!-- 프로젝트 퇴직연금 전략사업 개발 시작 -->
+    <div class="minsu container">
+      <div class="minsu posts">
+        <div class="minsu post" id="openModalBtn3" style="cursor: pointer;">
           <h2 class="minsu post-title">🖱️ 기업은행 - 퇴직연금 전략사업 개발</h2>
-        </a>
-      </div>
-      <!-- Button to open the modal -->
-      <!-- 모달 -->
-      <div id="myModal3" class="modal">
-        <!-- 모달 내용 -->
-        <div class="modal-content">
-          <!-- 모달 닫기 버튼 -->
-          <span class="close">&times;</span>
-          <!-- 외부 내용을 표시할 영역 -->
-          <div id="modalContent3"></div>
         </div>
-      </div>
-      <script>
-        // 모달 열기 버튼
-        var btn = document.getElementById("openModalBtn3");
-        // 모달
-        var modal = document.getElementById("myModal3");
-        // 모달 내용을 표시할 영역
-        var modalContent = document.getElementById("modalContent3");
-        // 모달 닫기 버튼
-        var closeBtn = modal.querySelector(".close");
-        // 모달 열기 버튼에 클릭 이벤트 리스너 추가
-        btn.addEventListener("click", function () {
-          // 모달 열기
-          modal.style.display = "block";
-          // AJAX 요청 보내기
-          fetch('projects3.html')
-            .then(response => response.text())
-            .then(data => {
-              // 요청 성공 시 내용을 모달 내부에 삽입
-              modalContent.innerHTML = data;
-            })
-            .catch(error => console.error('Error fetching content:', error));
-        });
-        // 모달 닫기 버튼에 클릭 이벤트 리스너 추가
-        closeBtn.addEventListener("click", function () {
-          // 모달 닫기
-          modal.style.display = "none";
-          // 모달 내용 초기화
-          modalContent.innerHTML = '';
-        });
-        // 사용자가 모달 바깥을 클릭했을 때 모달 닫기
-        window.addEventListener("click", function (event) {
-          if (event.target === modal) {
+
+        <div id="myModal3" class="modal">
+          <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="modalContent3"></div>
+          </div>
+        </div>
+
+        <script>
+          // 변수 선언 및 로직은 기존과 동일하지만, 대상(btn)이 이제 박스 전체가 됩니다.
+          var btn = document.getElementById("openModalBtn3");
+          var modal = document.getElementById("myModal3");
+          var modalContent = document.getElementById("modalContent3");
+          var closeBtn = modal.querySelector(".close");
+
+          btn.addEventListener("click", function () {
+            modal.style.display = "block";
+            fetch('projects3.html')
+              .then(response => response.text())
+              .then(data => {
+                modalContent.innerHTML = data;
+              })
+              .catch(error => console.error('Error fetching content:', error));
+          });
+
+          closeBtn.addEventListener("click", function () {
             modal.style.display = "none";
             modalContent.innerHTML = '';
-          }
-        });
-      </script>
+          });
+
+          window.addEventListener("click", function (event) {
+            if (event.target === modal) {
+              modal.style.display = "none";
+              modalContent.innerHTML = '';
+            }
+          });
+        </script>
+      </div>
     </div>
-  </div>
-  </section>
-  <!-- 프로젝트 퇴직연금 전략사업 개발 종료 -->
-  <!-- 프로젝트 ISA 개발업무 시작 -->
-  <div class="minsu container">
-    <div class="minsu posts">
-      <div class="minsu post">
-        <a id="openModalBtn2">
+    <!-- 프로젝트 퇴직연금 전략사업 개발 종료 -->
+    <!-- 프로젝트 ISA 개발업무 시작 -->
+    <div class="minsu container">
+      <div class="minsu posts">
+        <div class="minsu post" id="openModalBtn2" style="cursor: pointer;">
           <h2 class="minsu post-title">🖱️ 기업은행 - ISA 개발업무</h2>
-        </a>
-      </div>
-      <!-- Button to open the modal -->
-      <!-- 모달 -->
-      <div id="myModal2" class="modal">
-        <!-- 모달 내용 -->
-        <div class="modal-content">
-          <!-- 모달 닫기 버튼 -->
-          <span class="close">&times;</span>
-          <!-- 외부 내용을 표시할 영역 -->
-          <div id="modalContent2"></div>
         </div>
-      </div>
-      <script>
-        // 모달 열기 버튼
-        var btn = document.getElementById("openModalBtn2");
-        // 모달
-        var modal = document.getElementById("myModal2");
-        // 모달 내용을 표시할 영역
-        var modalContent = document.getElementById("modalContent2");
-        // 모달 닫기 버튼
-        var closeBtn = modal.querySelector(".close");
-        // 모달 열기 버튼에 클릭 이벤트 리스너 추가
-        btn.addEventListener("click", function () {
-          // 모달 열기
-          modal.style.display = "block";
-          // AJAX 요청 보내기
-          fetch('projects2.html')
-            .then(response => response.text())
-            .then(data => {
-              // 요청 성공 시 내용을 모달 내부에 삽입
-              modalContent.innerHTML = data;
-            })
-            .catch(error => console.error('Error fetching content:', error));
-        });
-        // 모달 닫기 버튼에 클릭 이벤트 리스너 추가
-        closeBtn.addEventListener("click", function () {
-          // 모달 닫기
-          modal.style.display = "none";
-          // 모달 내용 초기화
-          modalContent.innerHTML = '';
-        });
-        // 사용자가 모달 바깥을 클릭했을 때 모달 닫기
-        window.addEventListener("click", function (event) {
-          if (event.target === modal) {
+
+        <div id="myModal2" class="modal">
+          <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="modalContent2"></div>
+          </div>
+        </div>
+
+        <script>
+          var btn = document.getElementById("openModalBtn2");
+          var modal = document.getElementById("myModal2");
+          var modalContent = document.getElementById("modalContent2");
+          var closeBtn = modal.querySelector(".close");
+
+          // 박스 전체 클릭 시 발생할 이벤트
+          btn.addEventListener("click", function () {
+            modal.style.display = "block";
+            fetch('projects2.html')
+              .then(response => response.text())
+              .then(data => {
+                modalContent.innerHTML = data;
+              })
+              .catch(error => console.error('Error fetching content:', error));
+          });
+
+          closeBtn.addEventListener("click", function () {
             modal.style.display = "none";
             modalContent.innerHTML = '';
-          }
-        });
-      </script>
+          });
+
+          window.addEventListener("click", function (event) {
+            if (event.target === modal) {
+              modal.style.display = "none";
+              modalContent.innerHTML = '';
+            }
+          });
+        </script>
+      </div>
     </div>
-  </div>
-  <!-- 프로젝트 ISA 개발업무 종료 -->
-  <!-- 프로젝트 ISA 개발업무 시작 -->
-  <div class="minsu container">
-    <div class="minsu posts">
-      <div class="minsu post">
-        <a id="openModalBtn">
+    <!-- 프로젝트 ISA 개발업무 종료 -->
+    <!-- 프로젝트 ISA 운영업무 시작 -->
+    <div class="minsu container">
+      <div class="minsu posts">
+        <div class="minsu post" id="openModalBtn" style="cursor: pointer;">
           <h2 class="minsu post-title">🖱️ 기업은행 - ISA 운영업무</h2>
-        </a>
-      </div>
-      <!-- Button to open the modal -->
-      <!-- 모달 -->
-      <div id="myModal" class="modal">
-        <!-- 모달 내용 -->
-        <div class="modal-content">
-          <!-- 모달 닫기 버튼 -->
-          <span class="close">&times;</span>
-          <!-- 외부 내용을 표시할 영역 -->
-          <div id="modalContent"></div>
         </div>
-      </div>
-      <script>
-        // 모달 열기 버튼
-        var btn = document.getElementById("openModalBtn");
-        // 모달
-        var modal = document.getElementById("myModal");
-        // 모달 내용을 표시할 영역
-        var modalContent = document.getElementById("modalContent");
-        // 모달 닫기 버튼
-        var closeBtn = modal.querySelector(".close");
-        // 모달 열기 버튼에 클릭 이벤트 리스너 추가
-        btn.addEventListener("click", function () {
-          // 모달 열기
-          modal.style.display = 'block';
-          // AJAX 요청 보내기
-          fetch('projects.html')
-            .then(response => response.text())
-            .then(data => {
-              // 요청 성공 시 내용을 모달 내부에 삽입
-              modalContent.innerHTML = data;
-            })
-            .catch(error => console.error('Error fetching content:', error));
-        });
-        // 모달 닫기 버튼에 클릭 이벤트 리스너 추가
-        closeBtn.addEventListener("click", function () {
-          // 모달 닫기
-          modal.style.display = "none";
-          // 모달 내용 초기화
-          modalContent.innerHTML = '';
-        });
-        // 사용자가 모달 바깥을 클릭했을 때 모달 닫기
-        window.addEventListener("click", function (event) {
-          if (event.target === modal) {
+
+        <div id="myModal" class="modal">
+          <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="modalContent"></div>
+          </div>
+        </div>
+
+        <script>
+          // 이제 'openModalBtn'은 .minsu.post 전체를 가리킵니다.
+          var btn = document.getElementById("openModalBtn");
+          var modal = document.getElementById("myModal");
+          var modalContent = document.getElementById("modalContent");
+          var closeBtn = modal.querySelector(".close");
+
+          // 박스 클릭 시 실행
+          btn.addEventListener("click", function () {
+            modal.style.display = 'block';
+            fetch('projects.html')
+              .then(response => response.text())
+              .then(data => {
+                modalContent.innerHTML = data;
+              })
+              .catch(error => console.error('Error fetching content:', error));
+          });
+
+          // 닫기 버튼
+          closeBtn.addEventListener("click", function () {
             modal.style.display = "none";
             modalContent.innerHTML = '';
-          }
-        });
-      </script>
-    </div>
-  </div>
-  <!-- 프로젝트 ISA 개발업무 종료 -->
-  <!--프로젝트 내용 종료-->
-  <!-- About ME 시작-->
-  <section id="About" class="minsu main">
-    <div class="minsu jumbotron">
-      <div class="minsu container">
-        <h1>About ME</h1>
+          });
+
+          // 바깥 영역 클릭 시 닫기
+          window.addEventListener("click", function (event) {
+            if (event.target === modal) {
+              modal.style.display = "none";
+              modalContent.innerHTML = '';
+            }
+          });
+        </script>
       </div>
     </div>
-  </section>
-  <div class="minsu container">
-    <div class="minsu posts">
-      <h2>⚒️ Skills</h2>
-      <div class="minsu tags skills">
-        <!-- <a class="minsu tag">JAVA(Spring 기반 AnyFrame)</a>
+    <!-- 프로젝트 ISA 운영업무 종료 -->
+    <!--프로젝트 내용 종료-->
+    <!-- About ME 시작-->
+    <section id="About" class="minsu main">
+      <div class="minsu jumbotron">
+        <div class="minsu container">
+          <h1>About ME</h1>
+        </div>
+      </div>
+    </section>
+    <div class="minsu container">
+      <div class="minsu posts">
+        <h2>⚒️ Skills</h2>
+        <div class="minsu tags skills">
+          <!-- <a class="minsu tag">JAVA(Spring 기반 AnyFrame)</a>
         <a class="minsu tag">RDBMS(Oracle)</a>
         <a class="minsu tag">EAI/MCA/FEP 전문거래 개발</a>
         <a class="minsu tag">jFlow(배치관리 솔루션)</a>
@@ -378,109 +327,109 @@
         <a class="minsu tag">통합단말개발</a>
         <a class="minsu tag"><i class="fas fa-meteor"></i></a> -->
 
-        <!-- 스킬바 추가 -->
-        <div class="minsu tag">JAVA(Spring 기반 AnyFrame)
-          <div class="skill-bar">
-            <div class="expert-bar"></div>
+          <!-- 스킬바 추가 -->
+          <div class="minsu tag">JAVA(Spring 기반 AnyFrame)
+            <div class="skill-bar">
+              <div class="expert-bar"></div>
+            </div>
           </div>
-        </div>
 
-        <div class="minsu tag">RDBMS(Oracle)
-          <div class="skill-bar">
-            <div class="expert-bar"></div>
+          <div class="minsu tag">RDBMS(Oracle)
+            <div class="skill-bar">
+              <div class="expert-bar"></div>
+            </div>
           </div>
-        </div>
 
-        <div class="minsu tag">EAI/MCA/FEP 전문거래 개발
-          <div class="skill-bar">
-            <div class="intermediate-bar"></div>
+          <div class="minsu tag">EAI/MCA/FEP 전문거래 개발
+            <div class="skill-bar">
+              <div class="intermediate-bar"></div>
+            </div>
           </div>
-        </div>
 
-        <div class="minsu tag">jFlow(배치관리 솔루션)
-          <div class="skill-bar">
-            <div class="intermediate-bar"></div>
+          <div class="minsu tag">jFlow(배치관리 솔루션)
+            <div class="skill-bar">
+              <div class="intermediate-bar"></div>
+            </div>
           </div>
-        </div>
 
-        <div class="minsu tag">통합단말개발
-          <div class="skill-bar">
-            <div class="intermediate-bar"></div>
+          <div class="minsu tag">통합단말개발
+            <div class="skill-bar">
+              <div class="intermediate-bar"></div>
+            </div>
           </div>
-        </div>
 
-        <div class="minsu tag">Python
-          <div class="skill-bar">
-            <div class="beginner-bar"></div>
+          <div class="minsu tag">Python
+            <div class="skill-bar">
+              <div class="beginner-bar"></div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <h2>📖 Career</h2>
-    <div class="minsu career-wrapper">
-      <div class="minsu career divider">
-        <div class="minsu career-place">현대차증권 연금운영팀</div>
-        <div class="minsu career-desc">
-          <p class="minsu career-role">퇴직연금 IT 비즈니스 프로세스 정의 및 기획</p>
-          <p class="minsu career-role">RK 시스템 고도화 및 차세대 시스템 아키텍처 분석</p>
-          <p class="minsu career-duration">2025-12 ~ 현재</p>
+      <h2>📖 Career</h2>
+      <div class="minsu career-wrapper">
+        <div class="minsu career divider">
+          <div class="minsu career-place">현대차증권 연금운영팀</div>
+          <div class="minsu career-desc">
+            <p class="minsu career-role">퇴직연금 IT 비즈니스 프로세스 정의 및 기획</p>
+            <p class="minsu career-role">RK 시스템 고도화 및 차세대 시스템 아키텍처 분석</p>
+            <p class="minsu career-duration">2025-12 ~ 현재</p>
+          </div>
+        </div>
+        <div class="minsu career divider">
+          <div class="minsu career-place">IBK기업은행 IT금융개발부</div>
+          <div class="minsu career-desc">
+            <p class="minsu career-role">퇴직연금 전략사업 개발</p>
+            <p class="minsu career-role">제도신설 및 변경, 업무효율화, 시스템안정화</p>
+            <p class="minsu career-duration">2024-01 ~ 2025.11</p>
+          </div>
+        </div>
+        <div class="minsu career divider">
+          <div class="minsu career-place">IBK기업은행 IT금융개발부</div>
+          <div class="minsu career-desc">
+            <p class="minsu career-role">ISA(개인종합자산관리계좌)</p>
+            <p class="minsu career-duration">2022-07 ~ 2024-01</p>
+          </div>
+        </div>
+        <div class="minsu career divider">
+          <div class="minsu career-place">IBK기업은행 경안지점</div>
+          <div class="minsu career-desc">
+            <p class="minsu career-role">영업점 여신 업무, 수신 업무, 외환 업무</p>
+            <p class="minsu career-duration">2021-01 ~ 2022-07</p>
+          </div>
+        </div>
+        <div class="minsu career divider">
+          <div class="minsu career-place">입영 휴직</div>
+          <div class="minsu career-desc">
+            <p class="minsu career-duration">2019-03 ~ 2020-10</p>
+          </div>
+        </div>
+        <div class="minsu career divider">
+          <div class="minsu career-place">IBK기업은행 오포지점</div>
+          <div class="minsu career-desc">
+            <p class="minsu career-role">영업점 수신, 외환 업무</p>
+            <p class="minsu career-duration">2017-12 ~ 2019-03</p>
+          </div>
         </div>
       </div>
-      <div class="minsu career divider">
-        <div class="minsu career-place">IBK기업은행 IT금융개발부</div>
-        <div class="minsu career-desc">
-          <p class="minsu career-role">퇴직연금 전략사업 개발</p>
-          <p class="minsu career-role">제도신설 및 변경, 업무효율화, 시스템안정화</p>
-          <p class="minsu career-duration">2024-01 ~ 2025.11</p>
+      <h2>🏫 Education</h2>
+      <div class="minsu career-wrapper">
+        <div class="minsu career divider">
+          <div class="minsu career-place">중앙대학교 서울캠퍼스</div>
+          <div class="minsu career-desc">
+            <p class="minsu career-role">지식경영학부</p>
+            <p class="minsu career-duration">2021-03 ~ 2025.02</p>
+          </div>
+        </div>
+        <div class="minsu career divider">
+          <div class="minsu career-place">양영디지털고등학교</div>
+          <div class="minsu career-desc">
+            <p class="minsu career-role">정보통신과</p>
+            <p class="minsu career-duration">2015.03 ~ 2018.02</p>
+          </div>
         </div>
       </div>
-      <div class="minsu career divider">
-        <div class="minsu career-place">IBK기업은행 IT금융개발부</div>
-        <div class="minsu career-desc">
-          <p class="minsu career-role">ISA(개인종합자산관리계좌)</p>
-          <p class="minsu career-duration">2022-07 ~ 2024-01</p>
-        </div>
-      </div>
-      <div class="minsu career divider">
-        <div class="minsu career-place">IBK기업은행 경안지점</div>
-        <div class="minsu career-desc">
-          <p class="minsu career-role">영업점 여신 업무, 수신 업무, 외환 업무</p>
-          <p class="minsu career-duration">2021-01 ~ 2022-07</p>
-        </div>
-      </div>
-      <div class="minsu career divider">
-        <div class="minsu career-place">입영 휴직</div>
-        <div class="minsu career-desc">
-          <p class="minsu career-duration">2019-03 ~ 2020-10</p>
-        </div>
-      </div>
-      <div class="minsu career divider">
-        <div class="minsu career-place">IBK기업은행 오포지점</div>
-        <div class="minsu career-desc">
-          <p class="minsu career-role">영업점 수신, 외환 업무</p>
-          <p class="minsu career-duration">2017-12 ~ 2019-03</p>
-        </div>
-      </div>
-    </div>
-    <h2>🏫 Education</h2>
-    <div class="minsu career-wrapper">
-      <div class="minsu career divider">
-        <div class="minsu career-place">중앙대학교 서울캠퍼스</div>
-        <div class="minsu career-desc">
-          <p class="minsu career-role">지식경영학부</p>
-          <p class="minsu career-duration">2021-03 ~ 2025.02</p>
-        </div>
-      </div>
-      <div class="minsu career divider">
-        <div class="minsu career-place">양영디지털고등학교</div>
-        <div class="minsu career-desc">
-          <p class="minsu career-role">정보통신과</p>
-          <p class="minsu career-duration">2015.03 ~ 2018.02</p>
-        </div>
-      </div>
-    </div>
-    <h2>📚 External Education</h2>
-    <!--<div class="minsu career-wrapper">
+      <h2>📚 External Education</h2>
+      <!--<div class="minsu career-wrapper">
         <div class="minsu career divider">
           <div class="minsu career-place">Toss Bank</div>
           <div class="minsu career-desc">
@@ -489,144 +438,144 @@
           </div>
         </div>
       </div>-->
-    <div class="minsu career-wrapper">
-      <div class="minsu career divider">
-        <div class="minsu career-place">디지털Academy (SQL)</div>
-        <div class="minsu career-desc">
-          <p class="minsu career-role">Oracle SQL</p>
-          <p class="minsu career-duration">24H</p>
+      <div class="minsu career-wrapper">
+        <div class="minsu career divider">
+          <div class="minsu career-place">디지털Academy (SQL)</div>
+          <div class="minsu career-desc">
+            <p class="minsu career-role">Oracle SQL</p>
+            <p class="minsu career-duration">24H</p>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="minsu career-wrapper">
-      <div class="minsu career divider">
-        <div class="minsu career-place">금융연수원</div>
-        <div class="minsu career-desc">
-          <p class="minsu career-role">금융데이터 분석을 위한 파이썬 및 크롤링</p>
-          <p class="minsu career-duration">20H</p>
+      <div class="minsu career-wrapper">
+        <div class="minsu career divider">
+          <div class="minsu career-place">금융연수원</div>
+          <div class="minsu career-desc">
+            <p class="minsu career-role">금융데이터 분석을 위한 파이썬 및 크롤링</p>
+            <p class="minsu career-duration">20H</p>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="minsu career-wrapper">
-      <div class="minsu career divider">
-        <div class="minsu career-place">금융연수원</div>
-        <div class="minsu career-desc">
-          <p class="minsu career-role">쉽게 배우는 SQL과 데이터베이스</p>
-          <p class="minsu career-duration">20H</p>
+      <div class="minsu career-wrapper">
+        <div class="minsu career divider">
+          <div class="minsu career-place">금융연수원</div>
+          <div class="minsu career-desc">
+            <p class="minsu career-role">쉽게 배우는 SQL과 데이터베이스</p>
+            <p class="minsu career-duration">20H</p>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="minsu career-wrapper">
-      <div class="minsu career divider">
-        <div class="minsu career-place">IBK기업은행</div>
-        <div class="minsu career-desc">
-          <p class="minsu career-role">업무에 바로 쓰는 SQL 튜닝</p>
-          <p class="minsu career-duration">2DAY</p>
+      <div class="minsu career-wrapper">
+        <div class="minsu career divider">
+          <div class="minsu career-place">IBK기업은행</div>
+          <div class="minsu career-desc">
+            <p class="minsu career-role">업무에 바로 쓰는 SQL 튜닝</p>
+            <p class="minsu career-duration">2DAY</p>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="minsu career-wrapper">
-      <div class="minsu career divider">
-        <div class="minsu career-place">IBK기업은행</div>
-        <div class="minsu career-desc">
-          <p class="minsu career-role">JAVA아키텍처와 업무향상</p>
-          <p class="minsu career-duration">2DAY</p>
+      <div class="minsu career-wrapper">
+        <div class="minsu career divider">
+          <div class="minsu career-place">IBK기업은행</div>
+          <div class="minsu career-desc">
+            <p class="minsu career-role">JAVA아키텍처와 업무향상</p>
+            <p class="minsu career-duration">2DAY</p>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="minsu career-wrapper">
-      <div class="minsu career divider">
-        <div class="minsu career-place">IBK기업은행</div>
-        <div class="minsu career-desc">
-          <p class="minsu career-role">데이터분석 및 업무자동화</p>
-          <p class="minsu career-duration">1DAY</p>
+      <div class="minsu career-wrapper">
+        <div class="minsu career divider">
+          <div class="minsu career-place">IBK기업은행</div>
+          <div class="minsu career-desc">
+            <p class="minsu career-role">데이터분석 및 업무자동화</p>
+            <p class="minsu career-duration">1DAY</p>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="minsu career-wrapper">
-      <div class="minsu career divider">
-        <div class="minsu career-place">IBK기업은행</div>
-        <div class="minsu career-desc">
-          <p class="minsu career-role">자바프로그래밍 입문</p>
-          <p class="minsu career-duration">1DAY</p>
+      <div class="minsu career-wrapper">
+        <div class="minsu career divider">
+          <div class="minsu career-place">IBK기업은행</div>
+          <div class="minsu career-desc">
+            <p class="minsu career-role">자바프로그래밍 입문</p>
+            <p class="minsu career-duration">1DAY</p>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="minsu career-wrapper">
-      <div class="minsu career divider">
-        <div class="minsu career-place">IBK기업은행</div>
-        <div class="minsu career-desc">
-          <p class="minsu career-role">데이터베이스 Oracle 12c</p>
-          <p class="minsu career-duration">2DAY</p>
+      <div class="minsu career-wrapper">
+        <div class="minsu career divider">
+          <div class="minsu career-place">IBK기업은행</div>
+          <div class="minsu career-desc">
+            <p class="minsu career-role">데이터베이스 Oracle 12c</p>
+            <p class="minsu career-duration">2DAY</p>
+          </div>
         </div>
       </div>
-    </div>
-    <h2>📜 License</h2>
-    <div class="minsu exeducation-wrapper">
-      <div class="minsu exeducation divider">
-        <div class="minsu exeducation-place">SQLD</div>
-        <div class="minsu exeducation-desc">
-          <p class="minsu exeducation-role">SQLD-056005400</p>
-          <p class="minsu exeducation-duration">2025-04-04</p>
+      <h2>📜 License</h2>
+      <div class="minsu exeducation-wrapper">
+        <div class="minsu exeducation divider">
+          <div class="minsu exeducation-place">SQLD</div>
+          <div class="minsu exeducation-desc">
+            <p class="minsu exeducation-role">SQLD-056005400</p>
+            <p class="minsu exeducation-duration">2025-04-04</p>
+          </div>
         </div>
-      </div>
-      <div class="minsu exeducation divider">
-        <div class="minsu exeducation-place">펀드투자권유자문인력</div>
-        <div class="minsu exeducation-desc">
-          <p class="minsu exeducation-role">20-015087</p>
-          <p class="minsu exeducation-duration">2020-12-24</p>
+        <div class="minsu exeducation divider">
+          <div class="minsu exeducation-place">펀드투자권유자문인력</div>
+          <div class="minsu exeducation-desc">
+            <p class="minsu exeducation-role">20-015087</p>
+            <p class="minsu exeducation-duration">2020-12-24</p>
+          </div>
         </div>
-      </div>
-      <div class="minsu exeducation divider">
-        <div class="minsu exeducation-place">손해보험</div>
-        <div class="minsu exeducation-desc">
-          <p class="minsu exeducation-role">손보483-0011</p>
-          <p class="minsu exeducation-duration">2017-11-11</p>
+        <div class="minsu exeducation divider">
+          <div class="minsu exeducation-place">손해보험</div>
+          <div class="minsu exeducation-desc">
+            <p class="minsu exeducation-role">손보483-0011</p>
+            <p class="minsu exeducation-duration">2017-11-11</p>
+          </div>
         </div>
-      </div>
-      <div class="minsu exeducation divider">
-        <div class="minsu exeducation-place">생명보험</div>
-        <div class="minsu exeducation-desc">
-          <p class="minsu exeducation-role">생보378-0009</p>
-          <p class="minsu exeducation-duration">2017-08-12</p>
+        <div class="minsu exeducation divider">
+          <div class="minsu exeducation-place">생명보험</div>
+          <div class="minsu exeducation-desc">
+            <p class="minsu exeducation-role">생보378-0009</p>
+            <p class="minsu exeducation-duration">2017-08-12</p>
+          </div>
         </div>
-      </div>
-      <div class="minsu exeducation divider">
-        <div class="minsu exeducation-place">제3보험</div>
-        <div class="minsu exeducation-desc">
-          <p class="minsu exeducation-role">제3보318-0008</p>
-          <p class="minsu exeducation-duration">2017-07-08</p>
+        <div class="minsu exeducation divider">
+          <div class="minsu exeducation-place">제3보험</div>
+          <div class="minsu exeducation-desc">
+            <p class="minsu exeducation-role">제3보318-0008</p>
+            <p class="minsu exeducation-duration">2017-07-08</p>
+          </div>
         </div>
-      </div>
-      <div class="minsu exeducation divider">
-        <div class="minsu exeducation-place">컴퓨터활용능력 1급</div>
-        <div class="minsu exeducation-desc">
-          <p class="minsu exeducation-role">16-K9-070678</p>
-          <p class="minsu exeducation-duration">2016-12-09</p>
+        <div class="minsu exeducation divider">
+          <div class="minsu exeducation-place">컴퓨터활용능력 1급</div>
+          <div class="minsu exeducation-desc">
+            <p class="minsu exeducation-role">16-K9-070678</p>
+            <p class="minsu exeducation-duration">2016-12-09</p>
+          </div>
         </div>
-      </div>
-      <div class="minsu exeducation divider">
-        <div class="minsu exeducation-place">컴퓨터활용능력 2급</div>
-        <div class="minsu exeducation-desc">
-          <p class="minsu exeducation-role">15-K9-000988</p>
-          <p class="minsu exeducation-duration">2015-01-23</p>
+        <div class="minsu exeducation divider">
+          <div class="minsu exeducation-place">컴퓨터활용능력 2급</div>
+          <div class="minsu exeducation-desc">
+            <p class="minsu exeducation-role">15-K9-000988</p>
+            <p class="minsu exeducation-duration">2015-01-23</p>
+          </div>
         </div>
-      </div>
-      <div class="minsu exeducation divider">
-        <div class="minsu exeducation-place">정보처리기능사</div>
-        <div class="minsu exeducation-desc">
-          <p class="minsu exeducation-role">16801710053Q</p>
-          <p class="minsu exeducation-duration">2016-02-03</p>
+        <div class="minsu exeducation divider">
+          <div class="minsu exeducation-place">정보처리기능사</div>
+          <div class="minsu exeducation-desc">
+            <p class="minsu exeducation-role">16801710053Q</p>
+            <p class="minsu exeducation-duration">2016-02-03</p>
+          </div>
         </div>
-      </div>
-      <div class="minsu exeducation divider">
-        <div class="minsu exeducation-place">정보기기운용기능사</div>
-        <div class="minsu exeducation-desc">
-          <p class="minsu exeducation-role">16804710005D</p>
-          <p class="minsu exeducation-duration">2016-03-02</p>
+        <div class="minsu exeducation divider">
+          <div class="minsu exeducation-place">정보기기운용기능사</div>
+          <div class="minsu exeducation-desc">
+            <p class="minsu exeducation-role">16804710005D</p>
+            <p class="minsu exeducation-duration">2016-03-02</p>
+          </div>
         </div>
-      </div>
-      <!--<div class="minsu exeducation divider">
+        <!--<div class="minsu exeducation divider">
           <div class="minsu exeducation-place">전기기능사</div>
           <div class="minsu exeducation-desc">
             <p class="minsu exeducation-role">16401240280A</p>
@@ -640,69 +589,69 @@
             <p class="minsu exeducation-duration">2017-06-23</p>
           </div>
         </div> -->
-      <div class="minsu exeducation divider">
-        <div class="minsu exeducation-place">네트워크관리사2급</div>
-        <div class="minsu exeducation-desc">
-          <p class="minsu exeducation-role">NT2030271</p>
-          <p class="minsu exeducation-duration">2015-07-14</p>
-        </div>
-      </div>
-
-      <h2>🎤 Teaching Experience</h2>
-      <div class="minsu career-wrapper">
-        <div class="minsu career divider">
-          <div class="minsu career-place">IBK기업은행</div>
-          <div class="minsu career-desc">
-            <p class="minsu career-role">자산관리(ISA, 퇴직연금) 행내전문강사</p>
-            <p class="minsu career-duration">2024-07 ~ 2025.11</p>
+        <div class="minsu exeducation divider">
+          <div class="minsu exeducation-place">네트워크관리사2급</div>
+          <div class="minsu exeducation-desc">
+            <p class="minsu exeducation-role">NT2030271</p>
+            <p class="minsu exeducation-duration">2015-07-14</p>
           </div>
         </div>
-        <div class="minsu career divider">
-          <div class="minsu career-place">IBK기업은행</div>
-          <div class="minsu career-desc">
-            <p class="minsu career-role">IT 상담센터 대상 ISA 교육</p>
-            <p class="minsu career-duration">2023-12-19</p>
+
+        <h2>🎤 Teaching Experience</h2>
+        <div class="minsu career-wrapper">
+          <div class="minsu career divider">
+            <div class="minsu career-place">IBK기업은행</div>
+            <div class="minsu career-desc">
+              <p class="minsu career-role">자산관리(ISA, 퇴직연금) 행내전문강사</p>
+              <p class="minsu career-duration">2024-07 ~ 2025.11</p>
+            </div>
+          </div>
+          <div class="minsu career divider">
+            <div class="minsu career-place">IBK기업은행</div>
+            <div class="minsu career-desc">
+              <p class="minsu career-role">IT 상담센터 대상 ISA 교육</p>
+              <p class="minsu career-duration">2023-12-19</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <!-- About ME 종료-->
+    </div>
+    <footer class="minsu footer-wrapper">
+      <div class="minsu container">
+        <div class="minsu footer">
+          <div class="minsu footer-left">
+            <ul class="minsu footer-menu links">
+              <li>
+                <a href="#Introduce">Introduce</a>
+              </li>
+              <li>
+                <a href="#Projects">Projects</a>
+              </li>
+              <li>
+                <a href="#About">About</a>
+              </li>
+            </ul>
+            <p class="text">&copy; 2024 Minsu</p>
+          </div>
+          <div class="minsu footer-right">
+            <ul class="minsu footer-menu social">
+              <li>
+                <a href="https://github.com/minsu7893"><i class="fab fa-github"></i></a>
+              </li>
+              <li>
+                <a href="mailto:en8538@gmail.com"><i class="fas fa-envelope"></i></a>
+              </li>
+              <li>
+                <a href="/nas"><i class="fas fa-code"></i></a>
+              </li>
+            </ul>
           </div>
         </div>
       </div>
-
-    </div>
-  </div>
-  <!-- About ME 종료-->
-  </div>
-  <footer class="minsu footer-wrapper">
-    <div class="minsu container">
-      <div class="minsu footer">
-        <div class="minsu footer-left">
-          <ul class="minsu footer-menu links">
-            <li>
-              <a href="#Introduce">Introduce</a>
-            </li>
-            <li>
-              <a href="#Projects">Projects</a>
-            </li>
-            <li>
-              <a href="#About">About</a>
-            </li>
-          </ul>
-          <p class="text">&copy; 2024 Minsu</p>
-        </div>
-        <div class="minsu footer-right">
-          <ul class="minsu footer-menu social">
-            <li>
-              <a href="https://github.com/minsu7893"><i class="fab fa-github"></i></a>
-            </li>
-            <li>
-              <a href="mailto:en8538@gmail.com"><i class="fas fa-envelope"></i></a>
-            </li>
-            <li>
-              <a href="/nas"><i class="fas fa-code"></i></a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </footer>
+    </footer>
 </body>
 
 </html>
